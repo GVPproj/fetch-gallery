@@ -4,20 +4,14 @@ export default function ImageGallery({ imagesData }: any) {
    const [index, setIndex] = useState(0)
 
    function decrement() {
-      if (index === 0) {
-         setIndex(imagesData.length - 1)
-         console.log(index)
-      } else {
-         setIndex((prev) => prev - 1)
-      }
+      index === 0
+         ? setIndex(imagesData.length - 1)
+         : setIndex((prev) => prev - 1)
    }
    function increment() {
-      if (index === imagesData.length - 1) {
-         setIndex(0)
-         console.log(index)
-      } else {
-         setIndex((prev) => prev + 1)
-      }
+      index === imagesData.length - 1
+         ? setIndex(0)
+         : setIndex((prev) => prev + 1)
    }
 
    return (
