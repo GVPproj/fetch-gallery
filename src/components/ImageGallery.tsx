@@ -1,7 +1,10 @@
-type Props = {
-  text: string; // required
-};
-
-export default function ImageGallery({ text }: Props) {
-  return <p>{text}</p>;
+export default function ImageGallery({ imagesData }) {
+  //   console.log(imagesData);
+  return (
+    <>
+      {imagesData.map((img) => (
+        <img key={img.id} src={img.url} />
+      ))}
+    </>
+  );
 }

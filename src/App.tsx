@@ -1,25 +1,27 @@
 import SiteHeader from "./components/SiteHeader";
 import ImageGallery from "./components/ImageGallery";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 
 function App() {
+  const [imagesData, setImagesData] = useState([]);
+
   useEffect(() => {
-    fetchData();
+    const url = "https://jsonplaceholder.typicode.com/albums/1/photos";
+    fetchData(url);
   }, []);
 
-  const fetchData = async () => {
-    let response = await fetch(
-      "https://jsonplaceholder.typicode.com/albums/1/photos"
-    );
+  const fetchData = async (url: string) => {
+    let response = await fetch(url);
     let data = await response.json();
-    const slicedArray = data.slice(0, 8);
-    console.log(slicedArray);
+    const slicedArray = await data.slice(0, 8);
+    setImagesData(slicedArray);
   };
+
   return (
     <>
       <SiteHeader />
       <main>
-        <ImageGallery text="hello world" />
+        <ImageGallery imagesData={imagesData} />
       </main>
     </>
   );
