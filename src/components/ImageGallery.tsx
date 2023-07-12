@@ -19,7 +19,7 @@ export default function ImageGallery({ imagesData }: any) {
 
    return (
       <>
-         <div className="relative flex h-full w-full items-center justify-center">
+         <div className="relative flex h-full w-full items-center justify-center ">
             <button
                onClick={decrement}
                className="absolute left-8 z-10 bg-neutral-100 bg-opacity-50"
@@ -54,6 +54,7 @@ export default function ImageGallery({ imagesData }: any) {
                               className="absolute h-full w-full rounded-lg 
                               border-8 border-neutral-600 object-cover"
                               src={imageObject.url}
+                              alt={imageObject.title}
                            />
                         </div>
                      )
