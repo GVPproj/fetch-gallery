@@ -7,7 +7,7 @@ function App() {
    const numberOfImages = 8
 
    useEffect(() => {
-      const url = 'https://jsonplaceholder.typicode.com/photos'
+      const url = 'https://jsonplaceholder.typicode.com/photos?albumId=1'
       fetchData(url)
    }, [])
 

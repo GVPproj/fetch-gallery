@@ -22,7 +22,7 @@ export default function ImageGallery({ imagesData }: any) {
 
    return (
       <>
-         <p>{index}</p>
+         <p>Current Index: {index}</p>
          <div
             className="relative flex h-full w-full items-center justify-center gap-8
             rounded-lg border-4 border-neutral-100 bg-cover bg-center 
