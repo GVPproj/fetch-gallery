@@ -1,13 +1,13 @@
-import SiteHeader from './components/SiteHeader'
-import ImageGallery from './components/ImageGallery'
-import { useEffect, useState } from 'react'
+import SiteHeader from "./components/SiteHeader"
+import ImageGallery from "./components/ImageGallery"
+import { useEffect, useState } from "react"
 
 function App() {
    const [imagesData, setImagesData] = useState(null)
    const numberOfImages = 8
 
    useEffect(() => {
-      const url = 'https://jsonplaceholder.typicode.com/photos?albumId=1'
+      const url = "https://jsonplaceholder.typicode.com/photos?albumId=1"
       fetchData(url)
    }, [])
 
@@ -22,7 +22,7 @@ function App() {
       <>
          <SiteHeader />
          <main>
-            <div className="mx-auto h-[400px] w-[600px] max-w-full">
+            <div className="mx-auto h-[600px] w-[600px] max-w-full">
                {imagesData && <ImageGallery imagesData={imagesData} />}
             </div>
          </main>

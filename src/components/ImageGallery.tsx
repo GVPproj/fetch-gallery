@@ -1,7 +1,7 @@
-import { useState } from 'react'
-import { motion } from 'framer-motion'
-import chevronLeft from '/chevronLeft.svg'
-import chevronRight from '/chevronRight.svg'
+import { useState } from "react"
+import { motion } from "framer-motion"
+import chevronLeft from "/chevronLeft.svg"
+import chevronRight from "/chevronRight.svg"
 
 export default function ImageGallery({ imagesData }: any) {
    const [index, setIndex] = useState(0)
@@ -19,36 +19,49 @@ export default function ImageGallery({ imagesData }: any) {
 
    return (
       <>
-         <p className="mb-16">Current Index: {index}</p>
-         <div
-            className="relative flex h-full w-full items-center justify-center gap-8"
-            // rounded-lg border-4 border-neutral-100
-            // shadow-md shadow-neutral-300"
-            // style={{ backgroundImage: `url(${imagesData[index].url})` }}
-         >
+         <div className="relative flex h-full w-full items-center justify-center">
             <button
                onClick={decrement}
-               className="absolute left-8 z-10 bg-neutral-100 bg-opacity-30"
+               className="absolute left-8 z-10 bg-neutral-100 bg-opacity-50"
             >
                <img src={chevronLeft} alt="Go left" />
             </button>
             <button
                onClick={increment}
-               className="absolute right-8 z-10 bg-neutral-100 bg-opacity-30"
+               className="absolute right-8 z-10 bg-neutral-100 bg-opacity-50"
             >
                <img src={chevronRight} alt="Go right" />
             </button>
-            <motion.div className="absolute flex h-full w-full items-center justify-center">
-               <div className="relative z-10 rotate-28 text-center sm:rotate-30">
-                  {imagesData[index].title}
-               </div>
-               <img
-                  className="absolute h-full w-full rounded-lg border-4 border-neutral-100 
-                  object-cover shadow-md shadow-neutral-300"
-                  src={imagesData[index].url}
-               />
-            </motion.div>
+            <div className="h-full w-full overflow-hidden">
+               {/* setting transform: translateX property wih Framer motion
+               we will use our index mutliplied by 100% of the w-full
+               */}
+               <motion.div
+                  animate={{ x: `-${index * 100}%` }}
+                  transition={{ duration: 0.7 }}
+                  className="flex h-full"
+               >
+                  {imagesData.map((imageObject: any) => {
+                     return (
+                        <div
+                           key={imageObject.id}
+                           className="relative flex h-full w-full shrink-0 items-center justify-center"
+                        >
+                           <div className="absolute z-10 rotate-28 text-neutral-100">
+                              {imageObject.title}
+                           </div>
+                           <img
+                              className="absolute h-full w-full rounded-lg 
+                              border-8 border-neutral-600 object-cover"
+                              src={imageObject.url}
+                           />
+                        </div>
+                     )
+                  })}
+               </motion.div>
+            </div>
          </div>
+         <p className="my-4 text-center">Photo #{index + 1}</p>
       </>
    )
 }
