@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { motion } from 'framer-motion'
 import chevronLeft from '/chevronLeft.svg'
 import chevronRight from '/chevronRight.svg'
 
@@ -18,28 +19,35 @@ export default function ImageGallery({ imagesData }: any) {
 
    return (
       <>
-         <p>Current Index: {index}</p>
+         <p className="mb-16">Current Index: {index}</p>
          <div
-            className="relative flex h-full w-full items-center justify-center gap-8
-            rounded-lg border-4 border-neutral-100 bg-cover bg-center 
-            shadow-md shadow-neutral-300"
-            style={{ backgroundImage: `url(${imagesData[index].url})` }}
+            className="relative flex h-full w-full items-center justify-center gap-8"
+            // rounded-lg border-4 border-neutral-100
+            // shadow-md shadow-neutral-300"
+            // style={{ backgroundImage: `url(${imagesData[index].url})` }}
          >
             <button
                onClick={decrement}
-               className=" absolute left-8 bg-neutral-100 bg-opacity-30"
+               className="absolute left-8 z-10 bg-neutral-100 bg-opacity-30"
             >
                <img src={chevronLeft} alt="Go left" />
             </button>
             <button
                onClick={increment}
-               className="absolute right-8 bg-neutral-100 bg-opacity-30"
+               className="absolute right-8 z-10 bg-neutral-100 bg-opacity-30"
             >
                <img src={chevronRight} alt="Go right" />
             </button>
-            <div className=" max-w-[85%] rotate-28 text-center sm:rotate-30">
-               {imagesData[index].title}
-            </div>
+            <motion.div className="absolute flex h-full w-full items-center justify-center">
+               <div className="relative z-10 rotate-28 text-center sm:rotate-30">
+                  {imagesData[index].title}
+               </div>
+               <img
+                  className="absolute h-full w-full rounded-lg border-4 border-neutral-100 
+                  object-cover shadow-md shadow-neutral-300"
+                  src={imagesData[index].url}
+               />
+            </motion.div>
          </div>
       </>
    )

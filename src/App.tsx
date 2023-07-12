@@ -22,7 +22,7 @@ function App() {
       <>
          <SiteHeader />
          <main>
-            <div className="mx-auto h-[600px] w-[600px] max-w-full">
+            <div className="mx-auto h-[400px] w-[600px] max-w-full">
                {imagesData && <ImageGallery imagesData={imagesData} />}
             </div>
          </main>
