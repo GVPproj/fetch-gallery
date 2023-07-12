@@ -1,17 +1,12 @@
-import { useState } from "react";
+import SiteHeader from "./components/SiteHeader";
+import ImageGallery from "./components/ImageGallery";
 
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
     <>
-      <header>
-        <h1 className="text-2xl sm:text-4xl italic">Fetch Gallery</h1>
-      </header>
+      <SiteHeader />
       <main>
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
+        <ImageGallery text="hello world" />
       </main>
     </>
   );
