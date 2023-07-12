@@ -7,7 +7,9 @@ export default {
   theme: {
     extend: {
       rotate: {
-        '30': '30deg',
+        
+        '28': '28deg',
+        '30': '30deg'
       }
     }
   },

@@ -11,7 +11,7 @@ export default function ImageGallery({ imagesData }: any) {
             shadow-md shadow-neutral-300"
             style={{ backgroundImage: `url(${imagesData[1].url})` }}
          >
-            <div className="absolute max-w-[85%] rotate-30 text-center">
+            <div className=" max-w-[85%] rotate-28 text-center sm:rotate-30">
                {imagesData[1].title}
             </div>
          </div>
