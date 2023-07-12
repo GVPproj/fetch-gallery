@@ -1,4 +1,4 @@
-import { useState } from 'react'
+// import { useState } from 'react'
 
 export default function ImageGallery({ imagesData }: any) {
    //    const [index, setIndex] = useState(0)

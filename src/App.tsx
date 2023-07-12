@@ -21,7 +21,7 @@ function App() {
       <>
          <SiteHeader />
          <main>
-            <div className="mx-auto h-64 w-96">
+            <div className="mx-auto h-64 w-96 max-w-full">
                {imagesData && <ImageGallery imagesData={imagesData} />}
             </div>
          </main>
