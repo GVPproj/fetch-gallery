@@ -1,4 +1,6 @@
 import { useState } from 'react'
+import chevronLeft from '/chevronLeft.svg'
+import chevronRight from '/chevronRight.svg'
 
 export default function ImageGallery({ imagesData }: any) {
    const [index, setIndex] = useState(0)
@@ -25,15 +27,15 @@ export default function ImageGallery({ imagesData }: any) {
          >
             <button
                onClick={decrement}
-               className=" absolute left-4 bg-neutral-100 bg-opacity-30"
+               className=" absolute left-8 bg-neutral-100 bg-opacity-30"
             >
-               &#60;
+               <img src={chevronLeft} alt="Go left" />
             </button>
             <button
                onClick={increment}
-               className=" absolute right-4 bg-neutral-100 bg-opacity-30"
+               className="absolute right-8 bg-neutral-100 bg-opacity-30"
             >
-               &#62;
+               <img src={chevronRight} alt="Go right" />
             </button>
             <div className=" max-w-[85%] rotate-28 text-center sm:rotate-30">
                {imagesData[index].title}
