@@ -38,7 +38,7 @@ export default function ImageGallery({ imagesData }: any) {
                */}
                <motion.div
                   animate={{ x: `-${index * 100}%` }}
-                  transition={{ duration: 0.7 }}
+                  transition={{ duration: 0.5 }}
                   className="flex h-full"
                >
                   {imagesData.map((imageObject: any) => {
