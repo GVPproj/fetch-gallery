@@ -3,7 +3,7 @@ import ImageGallery from './components/ImageGallery'
 import { useEffect, useState } from 'react'
 
 function App() {
-   const [imagesData, setImagesData] = useState([])
+   const [imagesData, setImagesData] = useState(null)
 
    useEffect(() => {
       const url = 'https://jsonplaceholder.typicode.com/albums/1/photos'
@@ -21,8 +21,8 @@ function App() {
       <>
          <SiteHeader />
          <main>
-            <div className="w-96 h-64 mx-auto">
-               <ImageGallery imagesData={imagesData} />
+            <div className="mx-auto h-64 w-96">
+               {imagesData && <ImageGallery imagesData={imagesData} />}
             </div>
          </main>
       </>

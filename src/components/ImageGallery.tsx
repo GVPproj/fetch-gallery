@@ -1,16 +1,18 @@
+import { useState } from 'react'
+
 export default function ImageGallery({ imagesData }: any) {
-   // console.log(imagesData)
+   const [index, setIndex] = useState(0)
 
    return (
       <>
-         {imagesData.map((img: any) => (
-            <div
-               key={img.id}
-               className="flex h-full w-full rounded-md bg-cover bg-center"
-               style={{ backgroundImage: `url(${img.url})` }}
-            ></div>
-            // <img key={img.id} src={img.url} />
-         ))}
+         <div
+            className="relative flex h-full w-full items-center justify-center rounded-md border-4 border-neutral-100 bg-cover bg-center shadow-md shadow-neutral-300"
+            style={{ backgroundImage: `url(${imagesData[index].url})` }}
+         >
+            <div className="absolute max-w-[85%] rotate-30 text-center">
+               {imagesData[index].title}
+            </div>
+         </div>
       </>
    )
 }
