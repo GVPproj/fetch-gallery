@@ -22,13 +22,13 @@ export default function ImageGallery({ imagesData }: any) {
          <div className="relative flex h-full w-full items-center justify-center ">
             <button
                onClick={decrement}
-               className="absolute left-8 z-10 bg-neutral-100 bg-opacity-50"
+               className="absolute left-0 z-10 bg-neutral-100 bg-opacity-50"
             >
                <img src={chevronLeft} alt="Go left" />
             </button>
             <button
                onClick={increment}
-               className="absolute right-8 z-10 bg-neutral-100 bg-opacity-50"
+               className="absolute right-0 z-10 bg-neutral-100 bg-opacity-50"
             >
                <img src={chevronRight} alt="Go right" />
             </button>
@@ -47,12 +47,12 @@ export default function ImageGallery({ imagesData }: any) {
                            key={imageObject.id}
                            className="relative flex h-full w-full shrink-0 items-center justify-center"
                         >
-                           <div className="absolute z-10 rotate-28 text-neutral-100">
+                           <div className="absolute z-10 max-w-[32ch] rotate-45 text-neutral-100">
                               {imageObject.title}
                            </div>
                            <img
-                              className="absolute h-full w-full rounded-lg 
-                              border-8 border-neutral-600 object-cover"
+                              className="absolute h-5/6 w-5/6 rounded-lg 
+                              border-8 border-neutral-600 object-cover shadow-lg"
                               src={imageObject.url}
                               alt={imageObject.title}
                            />
