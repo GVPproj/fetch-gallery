@@ -1,5 +1,5 @@
 import SiteHeader from "./components/SiteHeader"
-import ImageGallery from "./components/ImageGallery"
+import Gallery from "./components/Gallery"
 
 import { useEffect, useState } from "react"
 
@@ -19,12 +19,16 @@ function App() {
       fetchData(url).catch(console.error)
    }, [])
 
+   // useEffect(() => {
+   //    window.localStorage.setItem("JSP_DATA", JSON.stringify(imagesData))
+   // }, [imagesData])
+
    return (
       <>
          <SiteHeader />
          <main>
             <div className="mx-auto h-[600px] w-[600px] max-w-full">
-               {imagesData && <ImageGallery imagesData={imagesData} />}
+               {imagesData && <Gallery imagesData={imagesData} />}
             </div>
          </main>
       </>
