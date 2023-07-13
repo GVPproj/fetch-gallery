@@ -4,7 +4,7 @@ export default function SiteHeader() {
          <h1 className="mb-2 text-xl sm:text-2xl">
             <span className="italic tracking-tighter">Fetch Gallery</span>
          </h1>
-         <h2 className="text-sm">
+         <h2 className="text-xs">
             Fetching 8 '/photos' Objects from JSONPlaceholder
          </h2>
       </header>
