@@ -27,19 +27,23 @@ export default function ImageGallery({ imagesData }: any) {
 
    return (
       <div className="flex h-full w-full flex-col">
-         <div className="relative flex h-full w-full items-center justify-center ">
-            <button
-               onClick={decrement}
-               className="absolute left-0 z-10 bg-neutral-100 bg-opacity-50"
-            >
-               <img src={chevronLeft} alt="Go left" />
-            </button>
-            <button
-               onClick={increment}
-               className="absolute right-0 z-10 bg-neutral-100 bg-opacity-50"
-            >
-               <img src={chevronRight} alt="Go right" />
-            </button>
+         <div className="relative flex h-full w-full items-center justify-center">
+            {index > 0 && (
+               <button
+                  onClick={decrement}
+                  className="absolute left-0 z-10 bg-neutral-100 bg-opacity-50"
+               >
+                  <img src={chevronLeft} alt="Go left" />
+               </button>
+            )}
+            {index < data.length - 1 && (
+               <button
+                  onClick={increment}
+                  className="absolute right-0 z-10 bg-neutral-100 bg-opacity-50"
+               >
+                  <img src={chevronRight} alt="Go right" />
+               </button>
+            )}
             <div className="h-full w-full overflow-hidden">
                {/* setting transform: translateX property wih Framer motion
                we will use our index mutliplied by 100% of the w-full
@@ -55,7 +59,11 @@ export default function ImageGallery({ imagesData }: any) {
                            key={imageObject.id}
                            className="relative flex h-full w-full shrink-0 items-center justify-center"
                         >
-                           <div className="absolute z-10 max-w-[28ch] rotate-45 rounded-full bg-neutral-500 bg-opacity-40 px-1 py-2 text-center text-neutral-100">
+                           <div
+                              className="absolute z-10 max-w-[28ch] rotate-45 
+                           rounded-full bg-neutral-500 bg-opacity-40 px-1 py-2 
+                           text-center font-semibold text-neutral-100"
+                           >
                               {imageObject.title}
                            </div>
                            <img
@@ -71,7 +79,7 @@ export default function ImageGallery({ imagesData }: any) {
             </div>
          </div>
          <button
-            className="self-center rounded-full bg-neutral-600 px-4 py-2 text-neutral-50"
+            className=" transform self-center rounded-full bg-neutral-600 px-4 py-2 text-neutral-50 hover:bg-neutral-500 active:scale-90"
             onClick={() => {
                let newArr = recursiveShuffle(imagesData)
                setData(newArr)
