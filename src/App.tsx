@@ -19,10 +19,6 @@ function App() {
       fetchData(url).catch(console.error)
    }, [])
 
-   // useEffect(() => {
-   //    window.localStorage.setItem("JSP_DATA", JSON.stringify(imagesData))
-   // }, [imagesData])
-
    return (
       <>
          <SiteHeader />

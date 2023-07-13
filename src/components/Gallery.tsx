@@ -32,7 +32,7 @@ export default function ImageGallery({ imagesData }: any) {
             {index > 0 && (
                <button
                   onClick={decrement}
-                  className="absolute left-0 z-10 h-5 w-5 bg-neutral-100 bg-opacity-50 sm:h-8 sm:w-8"
+                  className="absolute left-0 z-10 h-8 w-8 rounded border border-neutral-400 bg-neutral-200 bg-opacity-50 active:scale-90 sm:h-8 sm:w-8"
                >
                   <img src={chevronLeft} alt="Go left" />
                </button>
@@ -40,52 +40,28 @@ export default function ImageGallery({ imagesData }: any) {
             {index < data.length - 1 && (
                <button
                   onClick={increment}
-                  className="absolute right-0 z-10 h-5 w-5 bg-neutral-100 bg-opacity-50 sm:h-8 sm:w-8"
+                  className="absolute right-0 z-10 h-8 w-8 rounded border border-neutral-400 bg-neutral-200 bg-opacity-50 active:scale-90"
                >
                   <img src={chevronRight} alt="Go right" />
                </button>
             )}
             <div className="h-full w-full overflow-hidden">
                {/* setting transform: translateX property wih Framer motion
-               we will use our index mutliplied by 100% of the w-full
+               we will use our stateful index mutliplied by 100% of the div width
                */}
                <motion.div
                   animate={{ x: `-${index * 100}%` }}
                   transition={{ duration: 0.5 }}
                   className="flex  h-full"
                >
-                  {data.map((imageObject: imageObject) => {
-                     return (
-                        <GalleryImage
-                           id={imageObject.id}
-                           url={imageObject.url}
-                           title={imageObject.title}
-                        />
-                        // <div
-                        //    key={imageObject.id}
-                        //    className="relative flex h-full w-full shrink-0 items-center justify-center"
-                        // >
-                        //    <div
-                        //       className="absolute z-10 max-w-[24ch] rotate-45
-                        //    rounded-full bg-neutral-800 bg-opacity-60 px-8 py-4
-                        //    text-center text-sm font-semibold text-neutral-100 sm:text-base"
-                        //    >
-                        //       {imageObject.title}
-                        //    </div>
-                        //    <img
-                        //       className="absolute h-5/6 w-5/6 rounded-lg
-                        //       border-8 border-neutral-600 object-cover shadow-lg"
-                        //       src={imageObject.url}
-                        //       alt={imageObject.title}
-                        //    />
-                        // </div>
-                     )
+                  {data.map(({ id, url, title }: imageObject) => {
+                     return <GalleryImage id={id} url={url} title={title} />
                   })}
                </motion.div>
             </div>
          </div>
          <button
-            className=" transform self-center rounded-full bg-neutral-600 px-4 py-2 text-neutral-50 hover:bg-neutral-500 active:scale-90"
+            className="transform self-center rounded-full bg-neutral-600 px-4 py-2 text-neutral-50 hover:bg-neutral-500 active:scale-90 md:px-8 md:py-4 md:text-xl"
             onClick={() => {
                let newArr = recursiveShuffle(imagesData)
                setData(newArr)
@@ -93,7 +69,6 @@ export default function ImageGallery({ imagesData }: any) {
          >
             Shuffle
          </button>
-         {/* <p className="my-4 text-center">Photo #{index + 1}</p> */}
       </div>
    )
 }

@@ -6,8 +6,8 @@ html{
   @apply bg-neutral-100 text-neutral-800
 }
 header{
-  @apply px-4 py-8 sm:px-8 text-center;
+  @apply px-4 pt-6 sm:px-8 text-center;
 }
 main{
-  @apply px-4 sm:px-8 ;
+  @apply px-1
 }
