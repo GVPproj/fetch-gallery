@@ -18,12 +18,21 @@ interface imageObject {
 export default function ImageGallery({ imagesData }: any) {
    const [data, setData] = useState(imagesData)
    const [index, setIndex] = useState(0)
+   const [shuffleButtonText, setShuffleButtonText] = useState("Shuffle")
 
    function decrement() {
       index === 0 ? setIndex(data.length - 1) : setIndex((prev) => prev - 1)
    }
    function increment() {
       index === data.length - 1 ? setIndex(0) : setIndex((prev) => prev + 1)
+   }
+   function handleShuffleClick() {
+      setShuffleButtonText("Shuffling...")
+      setTimeout(() => {
+         let newArr = recursiveShuffle(imagesData)
+         setData(newArr)
+         setShuffleButtonText("Shuffle")
+      }, 800)
    }
 
    return (
@@ -63,15 +72,12 @@ export default function ImageGallery({ imagesData }: any) {
             </div>
             <button
                className="transform self-center rounded-full bg-neutral-600 px-4 py-2 text-neutral-50 hover:bg-neutral-500 active:scale-90 md:px-8 md:py-4 md:text-xl"
-               onClick={() => {
-                  let newArr = recursiveShuffle(imagesData)
-                  setData(newArr)
-               }}
+               onClick={handleShuffleClick}
             >
-               Shuffle
+               {shuffleButtonText}
             </button>
          </div>
-         <div className="mt-8">
+         <div className="m-8">
             <h1 className="text-center text-xl font-semibold">
                Current Order:
             </h1>
