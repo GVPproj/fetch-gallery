@@ -19,7 +19,7 @@ Generating a horizontally scrollable gallery of images from 'jsonplaceholder' da
 
 3. Your application should be optimized to cache downloaded images. This is to ensure that, should the browser or tab be closed, reloading the page will not necessitate the re-download of previously loaded images.
 
-4. Include a button below the scrollable image gallery on the web page. When clicked, this button should initiate a completely random reshuffling of the images in the gallery. This random reordering should be achieved through a recursive function.
+4. Include a button below the scrollable image gallery on the web page. When clicked, this button should initiate a completely random reshuffling of the images in the gallery. This random reordering should be achieved through a recursive function. ✅
 
 ## Additional Instructions
 
