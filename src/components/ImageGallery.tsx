@@ -3,22 +3,30 @@ import { motion } from "framer-motion"
 import chevronLeft from "/chevronLeft.svg"
 import chevronRight from "/chevronRight.svg"
 
+// @ts-ignore
+import recursiveShuffle from "../utils/recursiveShuffle.js"
+
+interface imageObject {
+   albumId: number
+   id: number
+   thumbnailUrl: string
+   title: string
+   url: string
+}
+
 export default function ImageGallery({ imagesData }: any) {
+   const [data, setData] = useState(imagesData)
    const [index, setIndex] = useState(0)
 
    function decrement() {
-      index === 0
-         ? setIndex(imagesData.length - 1)
-         : setIndex((prev) => prev - 1)
+      index === 0 ? setIndex(data.length - 1) : setIndex((prev) => prev - 1)
    }
    function increment() {
-      index === imagesData.length - 1
-         ? setIndex(0)
-         : setIndex((prev) => prev + 1)
+      index === data.length - 1 ? setIndex(0) : setIndex((prev) => prev + 1)
    }
 
    return (
-      <>
+      <div className="flex h-full w-full flex-col">
          <div className="relative flex h-full w-full items-center justify-center ">
             <button
                onClick={decrement}
@@ -41,13 +49,13 @@ export default function ImageGallery({ imagesData }: any) {
                   transition={{ duration: 0.5 }}
                   className="flex h-full"
                >
-                  {imagesData.map((imageObject: any) => {
+                  {data.map((imageObject: imageObject) => {
                      return (
                         <div
                            key={imageObject.id}
                            className="relative flex h-full w-full shrink-0 items-center justify-center"
                         >
-                           <div className="absolute z-10 max-w-[32ch] rotate-45 text-neutral-100">
+                           <div className="absolute z-10 max-w-[28ch] rotate-45 rounded-full bg-neutral-500 bg-opacity-40 px-1 py-2 text-center text-neutral-100">
                               {imageObject.title}
                            </div>
                            <img
@@ -62,7 +70,16 @@ export default function ImageGallery({ imagesData }: any) {
                </motion.div>
             </div>
          </div>
-         <p className="my-4 text-center">Photo #{index + 1}</p>
-      </>
+         <button
+            className="self-center rounded-full bg-neutral-600 px-4 py-2 text-neutral-50"
+            onClick={() => {
+               let newArr = recursiveShuffle(imagesData)
+               setData(newArr)
+            }}
+         >
+            Shuffle
+         </button>
+         {/* <p className="my-4 text-center">Photo #{index + 1}</p> */}
+      </div>
    )
 }

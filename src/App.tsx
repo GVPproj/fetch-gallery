@@ -1,5 +1,6 @@
 import SiteHeader from "./components/SiteHeader"
 import ImageGallery from "./components/ImageGallery"
+// import recursiveShuffle from "./utils/recursiveShuffle.js"
 import { useEffect, useState } from "react"
 
 function App() {
@@ -26,6 +27,14 @@ function App() {
                {imagesData && <ImageGallery imagesData={imagesData} />}
             </div>
          </main>
+         {/* <button
+            onClick={() => {
+               setImagesData(recursiveShuffle(imagesData))
+               console.log(imagesData)
+            }}
+         >
+            Shuffle
+         </button> */}
       </>
    )
 }

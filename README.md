@@ -4,18 +4,18 @@ Generating a horizontally scrollable gallery of images from 'jsonplaceholder' da
 
 ## Platform:
 
-- Web, ReactJS
+-  Web, ReactJS
 
 ## Task Breakdown
 
-1. Upon the initial load, your web application should fetch /photos JSON data from the http://jsonplaceholder.typicode.com resource.
+1. Upon the initial load, your web application should fetch /photos JSON data from the http://jsonplaceholder.typicode.com resource. ✅
 
 2. Utilizing the data obtained, generate a horizontally scrollable gallery of images. Each image in the display should feature:
 
-   - The "title" text from the data, superimposed diagonally across the image.
-   - The images should have rounded edges and a distinct border.
-   - A subtle drop shadow to add depth to the images.
-   - Smooth scrolling functionality for an optimal user experience.
+   -  The "title" text from the data, superimposed diagonally across the image. ✅
+   -  The images should have rounded edges and a distinct border. ✅
+   -  A subtle drop shadow to add depth to the images. ✅
+   -  Smooth scrolling functionality for an optimal user experience. ✅
 
 3. Your application should be optimized to cache downloaded images. This is to ensure that, should the browser or tab be closed, reloading the page will not necessitate the re-download of previously loaded images.
 
