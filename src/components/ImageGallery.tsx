@@ -31,7 +31,7 @@ export default function ImageGallery({ imagesData }: any) {
             {index > 0 && (
                <button
                   onClick={decrement}
-                  className="absolute left-0 z-10 bg-neutral-100 bg-opacity-50"
+                  className="absolute left-0 z-10 h-5 w-5 bg-neutral-100 bg-opacity-50 sm:h-8 sm:w-8"
                >
                   <img src={chevronLeft} alt="Go left" />
                </button>
@@ -39,7 +39,7 @@ export default function ImageGallery({ imagesData }: any) {
             {index < data.length - 1 && (
                <button
                   onClick={increment}
-                  className="absolute right-0 z-10 bg-neutral-100 bg-opacity-50"
+                  className="absolute right-0 z-10 h-5 w-5 bg-neutral-100 bg-opacity-50 sm:h-8 sm:w-8"
                >
                   <img src={chevronRight} alt="Go right" />
                </button>
@@ -51,7 +51,7 @@ export default function ImageGallery({ imagesData }: any) {
                <motion.div
                   animate={{ x: `-${index * 100}%` }}
                   transition={{ duration: 0.5 }}
-                  className="flex h-full"
+                  className="flex  h-full"
                >
                   {data.map((imageObject: imageObject) => {
                      return (
@@ -60,9 +60,9 @@ export default function ImageGallery({ imagesData }: any) {
                            className="relative flex h-full w-full shrink-0 items-center justify-center"
                         >
                            <div
-                              className="absolute z-10 max-w-[28ch] rotate-45 
-                           rounded-full bg-neutral-500 bg-opacity-40 px-1 py-2 
-                           text-center font-semibold text-neutral-100"
+                              className="absolute z-10 max-w-[24ch] rotate-45 
+                           rounded-full bg-neutral-800 bg-opacity-60 px-8 py-4 
+                           text-center text-sm font-semibold text-neutral-100 sm:text-base"
                            >
                               {imageObject.title}
                            </div>
