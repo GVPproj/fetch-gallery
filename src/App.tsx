@@ -17,7 +17,6 @@ function App() {
       }
 
       fetchData(url).catch(console.error)
-      console.log(numberOfImages)
    }, [numberOfImages])
 
    return (
