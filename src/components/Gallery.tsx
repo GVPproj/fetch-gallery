@@ -31,6 +31,7 @@ export default function ImageGallery({ imagesData }: any) {
       setTimeout(() => {
          let newArr = recursiveShuffle(imagesData)
          setData(newArr)
+         setIndex(0)
          setShuffleButtonText("Shuffle")
       }, 800)
    }
