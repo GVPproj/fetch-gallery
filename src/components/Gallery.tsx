@@ -16,7 +16,8 @@ interface imageObject {
 }
 
 export default function ImageGallery({ imagesData }: any) {
-   const [data, setData] = useState(imagesData)
+   const [numberOfImages, setNumberOfImages] = useState(5)
+   const [data, setData] = useState(imagesData.slice(0, numberOfImages))
    const [index, setIndex] = useState(0)
    const [shuffleButtonText, setShuffleButtonText] = useState("Shuffle")
 
@@ -29,17 +30,22 @@ export default function ImageGallery({ imagesData }: any) {
    function handleShuffleClick() {
       setShuffleButtonText("Shuffling...")
       setTimeout(() => {
-         let newArr = recursiveShuffle(imagesData)
+         let newArr = recursiveShuffle(imagesData.slice(0, numberOfImages))
          setData(newArr)
          setIndex(0)
          setShuffleButtonText("Shuffle")
       }, 800)
    }
 
+   function handleIncrement() {
+      setNumberOfImages((previous) => previous + 1)
+      setData(imagesData.slice(0, numberOfImages + 1))
+   }
+
    return (
       <>
-         <div className="flex h-full w-full flex-col">
-            <div className="relative flex h-full w-full items-center justify-center">
+         <div className="flex h-full w-full flex-col gap-4">
+            <div className="relative flex h-full min-h-[500px] w-full items-center justify-center">
                {index > 0 && (
                   <button
                      onClick={decrement}
@@ -74,22 +80,35 @@ export default function ImageGallery({ imagesData }: any) {
                   </motion.div>
                </div>
             </div>
-            <button
-               className="transform self-center rounded-full bg-neutral-600 px-4 py-2 text-neutral-50 transition-colors hover:bg-neutral-500 active:scale-90 md:px-8 md:py-4 md:text-xl"
-               onClick={handleShuffleClick}
-            >
-               {shuffleButtonText}
-            </button>
-         </div>
-         <div className="m-8">
-            <h1 className="text-center text-xl font-semibold">
-               Current Order:
-            </h1>
-            <p className="mt-4 text-center">
-               {data.map((img: imageObject) => (
-                  <span>{img.id} </span>
-               ))}
-            </p>
+            <div className="flex w-full justify-center gap-4 py-2">
+               {numberOfImages < 50 && (
+                  <button
+                     onClick={handleIncrement}
+                     className="transform self-center rounded-full bg-neutral-600 px-4 py-2
+               text-neutral-50 transition-colors hover:bg-neutral-500 
+               active:scale-90 md:px-8 md:py-4 md:text-xl"
+                  >
+                     Add Image
+                  </button>
+               )}
+               <button
+                  className="transform self-center rounded-full bg-neutral-600 px-4 py-2 text-neutral-50 transition-colors hover:bg-neutral-500 active:scale-90 md:px-8 md:py-4 md:text-xl"
+                  onClick={handleShuffleClick}
+               >
+                  {shuffleButtonText}
+               </button>
+            </div>
+
+            <div className="mb-8 mt-2">
+               <h1 className="text-center text-xl font-semibold">
+                  Current Order:
+               </h1>
+               <p className="p-4 text-center">
+                  {data.map((img: imageObject) => (
+                     <span>{img.id} </span>
+                  ))}
+               </p>
+            </div>
          </div>
       </>
    )
