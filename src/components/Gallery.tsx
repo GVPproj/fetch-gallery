@@ -1,4 +1,4 @@
-import { useState } from "react"
+import { useState, useEffect } from "react"
 import { motion } from "framer-motion"
 import chevronLeft from "/chevronLeft.svg"
 import chevronRight from "/chevronRight.svg"
@@ -16,35 +16,46 @@ interface imageObject {
 }
 
 export default function ImageGallery({ imagesData }: any) {
-   const [numberOfImages, setNumberOfImages] = useState(5)
-   const [data, setData] = useState(imagesData.slice(0, numberOfImages))
+   const [data, setData] = useState(imagesData)
    const [index, setIndex] = useState(0)
    const [shuffleButtonText, setShuffleButtonText] = useState("Shuffle")
+   const [url, setUrl] = useState("")
+   const [albumId, setAlbumId] = useState(2)
+
+   useEffect(() => {
+      if (url && albumId < 100) {
+         const fetchData = async (url: string) => {
+            let response = await fetch(url)
+            let newImages = await response.json()
+            setData((previous: any) => previous.concat(newImages))
+         }
+
+         fetchData(url).catch(console.error)
+      }
+   }, [url])
 
    function decrement() {
       index === 0 ? setIndex(data.length - 1) : setIndex((prev) => prev - 1)
    }
    function increment() {
-      if (index < data.length - 1) {
+      if ((index + 1) % 50 === 0) {
+         setUrl(
+            `https://jsonplaceholder.typicode.com/photos?albumId=${albumId}`
+         )
          setIndex((prev) => prev + 1)
+         setAlbumId((prev) => prev + 1)
       } else {
-         handleAddImage()
          setIndex((prev) => prev + 1)
       }
    }
    function handleShuffleClick() {
       setShuffleButtonText("Shuffling...")
       setTimeout(() => {
-         let newArr = recursiveShuffle(imagesData.slice(0, numberOfImages))
+         let newArr = recursiveShuffle(data)
          setData(newArr)
          setIndex(0)
          setShuffleButtonText("Shuffle")
       }, 800)
-   }
-
-   function handleAddImage() {
-      setNumberOfImages((previous) => previous + 1)
-      setData(imagesData.slice(0, numberOfImages + 1))
    }
 
    return (
@@ -61,12 +72,12 @@ export default function ImageGallery({ imagesData }: any) {
                      <img src={chevronLeft} alt="Go left" />
                   </button>
                )}
-               {index < 49 && (
+               {index < 4999 && (
                   <button
                      onClick={increment}
                      className="absolute right-0 z-10 h-8 w-8 
-                                rounded border border-neutral-400 bg-neutral-200 
-                                bg-opacity-50 active:scale-90"
+               rounded border border-neutral-400 bg-neutral-200 
+               bg-opacity-50 active:scale-90"
                   >
                      <img src={chevronRight} alt="Go right" />
                   </button>
@@ -93,16 +104,6 @@ export default function ImageGallery({ imagesData }: any) {
                </div>
             </div>
             <div className="flex w-full justify-center gap-4 py-2">
-               {numberOfImages < 50 && (
-                  <button
-                     onClick={handleAddImage}
-                     className="transform self-center rounded-full bg-neutral-600 px-4 py-2
-               text-neutral-50 transition-colors hover:bg-neutral-500 
-               active:scale-90 md:px-8 md:py-4 md:text-xl"
-                  >
-                     Add Image
-                  </button>
-               )}
                <button
                   className="transform self-center rounded-full bg-neutral-600 px-4 py-2 text-neutral-50 transition-colors hover:bg-neutral-500 active:scale-90 md:px-8 md:py-4 md:text-xl"
                   onClick={handleShuffleClick}
