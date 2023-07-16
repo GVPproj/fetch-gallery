@@ -25,7 +25,12 @@ export default function ImageGallery({ imagesData }: any) {
       index === 0 ? setIndex(data.length - 1) : setIndex((prev) => prev - 1)
    }
    function increment() {
-      index === data.length - 1 ? setIndex(0) : setIndex((prev) => prev + 1)
+      if (index < data.length - 1) {
+         setIndex((prev) => prev + 1)
+      } else {
+         handleAddImage()
+         setIndex((prev) => prev + 1)
+      }
    }
    function handleShuffleClick() {
       setShuffleButtonText("Shuffling...")
@@ -37,7 +42,7 @@ export default function ImageGallery({ imagesData }: any) {
       }, 800)
    }
 
-   function handleIncrement() {
+   function handleAddImage() {
       setNumberOfImages((previous) => previous + 1)
       setData(imagesData.slice(0, numberOfImages + 1))
    }
@@ -56,7 +61,7 @@ export default function ImageGallery({ imagesData }: any) {
                      <img src={chevronLeft} alt="Go left" />
                   </button>
                )}
-               {index < data.length - 1 && (
+               {index < 49 && (
                   <button
                      onClick={increment}
                      className="absolute right-0 z-10 h-8 w-8 
@@ -90,7 +95,7 @@ export default function ImageGallery({ imagesData }: any) {
             <div className="flex w-full justify-center gap-4 py-2">
                {numberOfImages < 50 && (
                   <button
-                     onClick={handleIncrement}
+                     onClick={handleAddImage}
                      className="transform self-center rounded-full bg-neutral-600 px-4 py-2
                text-neutral-50 transition-colors hover:bg-neutral-500 
                active:scale-90 md:px-8 md:py-4 md:text-xl"
