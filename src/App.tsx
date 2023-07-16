@@ -6,13 +6,11 @@ import { useEffect, useState } from "react"
 function App() {
    const [imagesData, setImagesData] = useState(null)
    const url = "https://jsonplaceholder.typicode.com/photos?albumId=1"
-   // const numberOfImages = 8
 
    useEffect(() => {
       const fetchData = async (url: string) => {
          let response = await fetch(url)
          let data = await response.json()
-         // let trimmedData = await data.slice(0, numberOfImages)
          setImagesData(data)
       }
 

@@ -75,7 +75,14 @@ export default function ImageGallery({ imagesData }: any) {
                      className="flex h-full"
                   >
                      {data.map(({ id, url, title }: imageObject) => {
-                        return <GalleryImage id={id} url={url} title={title} />
+                        return (
+                           <GalleryImage
+                              key={id}
+                              id={id}
+                              url={url}
+                              title={title}
+                           />
+                        )
                      })}
                   </motion.div>
                </div>
@@ -105,7 +112,7 @@ export default function ImageGallery({ imagesData }: any) {
                </h1>
                <p className="p-4 text-center">
                   {data.map((img: imageObject) => (
-                     <span>{img.id} </span>
+                     <span key={img.id}>{img.id} </span>
                   ))}
                </p>
             </div>
