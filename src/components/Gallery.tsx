@@ -7,7 +7,7 @@ import GalleryImage from "./GalleryImage.tsx"
 // @ts-ignore
 import recursiveShuffle from "../utils/recursiveShuffle.js"
 
-interface imageObject {
+type imageObject = {
    albumId: number
    id: number
    thumbnailUrl: string
@@ -15,7 +15,11 @@ interface imageObject {
    url: string
 }
 
-export default function ImageGallery({ imagesData }: any) {
+type Props = {
+   imagesData: imageObject[]
+}
+
+export default function ImageGallery({ imagesData }: Props) {
    const [data, setData] = useState(imagesData)
    const [index, setIndex] = useState(0)
    const [shuffleButtonText, setShuffleButtonText] = useState("Shuffle")
@@ -27,7 +31,7 @@ export default function ImageGallery({ imagesData }: any) {
          const fetchData = async (url: string) => {
             let response = await fetch(url)
             let newImages = await response.json()
-            setData((previous: any) => previous.concat(newImages))
+            setData((previous: imageObject[]) => previous.concat(newImages))
          }
 
          fetchData(url).catch(console.error)
